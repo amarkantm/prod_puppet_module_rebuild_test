@@ -1,0 +1,114 @@
+# MANAGED BY PUPPET #
+<%
+    #Set our globals
+    max_queue_size='200000000'
+    check_interval='3'
+    listen_port='1463'
+    thrift_server_threads='10' 
+    # find our pod/silo
+    @hostname =~ /^((dc1)?pd[0-9]{0,2})-(rtbs[0-9]{2}).*$/
+    server_pod=$1
+    server_group=$3
+    #Reporting Scribe Config
+    rpscribe_remote_host= server_pod+'-'+server_group+'-rpscribe01.'+@domain
+    rpscribe_categories='appnexusauditnotify bid nobid bidderdigest appnexusnotify'
+    rpscribe_target_write_size='20480'
+    rpscribe_buffer_send_rate='3'
+    rpscribe_retry_interval='30'
+    rpscribe_retry_interval_range='10'
+    rpscribe_remote_port='1463'
+    rpscribe_use_conn_pool='yes'
+    rpscribe_buffer_max_size='3000000'
+    rpscribe_buffer_max_write_size='4096'
+    #Real time Scribe config
+    rtscribe_remote_host= server_pod+'-'+server_group+'-rtscribe01.'+@domain
+    rtscribe_categories='appnexusauditnotify biddermonitoringdigest'
+    rtscribe_target_write_size='20480'
+    rtscribe_buffer_send_rate='10'
+    rtscribe_retry_interval='30'
+    rtscribe_retry_interval_range='10'
+    rtscribe_remote_port='1463'
+    rtscribe_use_conn_pool='yes'
+    rtscribe_buffer_max_size='3000000'
+    rtscribe_buffer_max_write_size='4096'
+    #Local log scribe config
+    local_log_categories='bid nobid bidderdigest appnexusnotify appnexusauditnotify biddermonitoringdigest'
+    local_log_max_size='10000000000'
+    local_log_max_write_interval='1'
+    local_log_max_write_size='4096'
+    local_log_target_write_size='20480'
+    local_log_rotate_period='hourly'
+    local_log_rotate_hour='0'
+    local_log_rotate_minute='1'
+%>
+##
+# Scribe Config for RTB Bidder <%= @hostname %>
+##
+port=<%= listen_port %>
+max_queue_size=<%= max_queue_size %>
+check_interval=<%= check_interval %>
+num_thrift_server_threads=<%= thrift_server_threads %>
+# relay reporting scribe messages to instnace in our silo - buffer to buffer0
+<store>
+    categories=<%= rpscribe_categories %>
+    type=buffer
+    max_write_interval=1
+    target_write_size=<%= rpscribe_target_write_size %>
+    buffer_send_rate=<%= rpscribe_buffer_send_rate %>
+    retry_interval=<%= rpscribe_retry_interval %>
+    retry_interval_range=<%= rpscribe_retry_interval_range %>
+    <primary>
+        type=network
+        remote_host=<%= rpscribe_remote_host %>
+        remote_port=<%= rpscribe_remote_port %>
+        use_conn_pool=<%= rpscribe_use_conn_pool %>
+    </primary>
+    <secondary>
+        type=file
+        fs_type=std
+        file_path=/var/rsi/logs/scribe/buffer0
+        max_size=<%= rpscribe_buffer_max_size %>
+        max_write_size=<%= rpscribe_buffer_max_write_size %>
+    </secondary>
+</store>
+# relay real-time scribe messages to instnace in our silo - buffer to buffer1
+<store>
+    categories=<%= rtscribe_categories %>
+    type=buffer
+    max_write_interval=1
+    target_write_size=<%= rtscribe_target_write_size %>
+    buffer_send_rate=<%= rtscribe_buffer_send_rate %>
+    retry_interval=<%= rtscribe_retry_interval %>
+    retry_interval_range=<%= rtscribe_retry_interval_range %>
+    <primary>
+        type=network
+        remote_host=<%= rtscribe_remote_host %>
+        remote_port=<%= rtscribe_remote_port %>
+        use_conn_pool=<%= rtscribe_use_conn_pool %>
+    </primary>
+    <secondary>
+        type=file
+        fs_type=std
+        file_path=/var/rsi/logs/scribe/buffer1
+        max_size=<%= rtscribe_buffer_max_size %>
+        max_write_size=<%= rtscribe_buffer_max_write_size %>
+    </secondary>
+</store>
+# store local copy of all logs to perm0
+<store>
+    categories=<%= local_log_categories %>
+    type=file
+    file_path=/var/rsi/logs/scribe/perm0
+    max_size=<%= local_log_max_size %>
+    max_write_interval=<%= local_log_max_write_interval %>
+    max_write_size=<%= local_log_max_write_size %>
+    target_write_size=<%= local_log_target_write_size %>
+    rotate_period=<%= local_log_rotate_period %>
+    rotate_hour=<%= local_log_rotate_hour %>
+    rotate_minute=<%= local_log_rotate_minute %>
+</store>
+# ignore google ping requests
+<store>
+    category=ping
+    type=null
+</store>
