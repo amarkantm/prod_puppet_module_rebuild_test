@@ -1,0 +1,957 @@
+METRO_KEY	COUNTRY	REGIONS	METRO_NAME
+-1	?	?	not metroized
+0	?	?	no metro
+500	usa	me-nh	portland-auburn
+501	usa	ct-nj-ny-pa	new york
+502	usa	ny	binghamton
+503	usa	ga	macon
+504	usa	de-nj-pa	philadelphia
+505	usa	mi	detroit
+506	usa	ma-nh-vt	boston (manchester)
+507	usa	ga-sc	savannah
+508	usa	md-pa-wv	pittsburgh
+509	usa	in-oh	ft. wayne
+510	usa	oh	cleveland-akron (canton)
+511	usa	dc-md-pa-va-wv	"washington, dc (hagrstwn)"
+512	usa	md	baltimore
+513	usa	mi	flint-saginaw-bay city
+514	usa	ny-pa	buffalo
+515	usa	in-ky-oh	cincinnati
+516	usa	pa	erie
+517	usa	nc-sc	charlotte
+518	usa	nc-va	greensboro-h.point-w.salem
+519	usa	sc	"charleston, sc"
+520	usa	ga-sc	augusta-aiken
+521	usa	ma-ri	providence-new bedford
+522	usa	al-ga	"columbus, ga (opelika, al)"
+523	usa	nh-ny-vt	burlington-plattsburgh
+524	usa	al-ga-nc	atlanta
+525	usa	ga	"albany, ga"
+526	usa	ny	utica
+527	usa	in	indianapolis
+528	usa	fl	miami-ft. lauderdale
+529	usa	in-ky	louisville
+530	usa	fl-ga	tallahassee-thomasville
+531	usa	ky-tn-va	"tri-cities, tn-va"
+532	usa	ma-ny-vt	albany-schenectady-troy
+533	usa	ct	hartford & new haven
+534	usa	fl	orlando-daytona bch-melbrn
+535	usa	oh	"columbus, oh"
+536	usa	oh-pa	youngstown
+537	usa	me	bangor
+538	usa	ny	"rochester, ny"
+539	usa	fl	tampa-st. pete (sarasota)
+540	usa	mi	traverse city-cadillac
+541	usa	ky	lexington
+542	usa	oh	dayton
+543	usa	ma	springfield-holyoke
+544	usa	nc-va	norfolk-portsmth-newpt nws
+545	usa	nc	greenville-n.bern-washngtn
+546	usa	sc	"columbia, sc"
+547	usa	mi-oh	toledo
+548	usa	fl	west palm beach-ft. pierce
+549	usa	ny	watertown
+550	usa	nc	wilmington
+551	usa	mi	lansing
+552	usa	me	presque isle
+553	usa	mi	marquette
+554	usa	oh-wv	wheeling-steubenville
+555	usa	ny	syracuse
+556	usa	va	richmond-petersburg
+557	usa	ky-tn	knoxville
+558	usa	oh	lima
+559	usa	va-wv	bluefield-beckley-oak hill
+560	usa	nc-va	raleigh-durham (fayetvlle)
+561	usa	fl-ga	jacksonville
+563	usa	mi	grand rapids-kalmzoo-b.crk
+564	usa	ky-oh-wv	charleston-huntington
+565	usa	ny-pa	elmira (corning)
+566	usa	pa	harrisburg-lncstr-leb-york
+567	usa	ga-nc-sc	greenvll-spart-ashevll-and
+569	usa	va-wv	harrisonburg
+570	usa	nc-sc	myrtle beach-florence
+571	usa	fl	ft. myers-naples
+573	usa	va-wv	roanoke-lynchburg
+574	usa	pa	johnstown-altoona-st colge
+575	usa	ga-nc-tn	chattanooga
+576	usa	de-md	salisbury
+577	usa	pa	wilkes barre-scranton-hztn
+581	usa	il-in	terre haute
+582	usa	in	"lafayette, in"
+583	usa	mi	alpena
+584	usa	va	charlottesville
+588	usa	in-mi	south bend-elkhart
+592	usa	fl	gainesville
+596	usa	oh	zanesville
+597	usa	oh-wv	parkersburg
+598	usa	wv	clarksburg-weston
+600	usa	tx	corpus christi
+602	usa	il-in	chicago
+603	usa	ks-mo-ok	joplin-pittsburg
+604	usa	mo	columbia-jefferson city
+605	usa	ks	topeka
+606	usa	al-ga	dothan
+609	usa	il-mo	st. louis
+610	usa	il	rockford
+611	usa	ia-mn	rochestr-mason city-austin
+612	usa	ar-la-ok-tx	shreveport
+613	usa	mn-wi	minneapolis-st. paul
+616	usa	ks-mo	kansas city
+617	usa	wi	milwaukee
+618	usa	tx	houston
+619	usa	ar-mo	"springfield, mo"
+622	usa	la-ms	new orleans
+623	usa	tx	dallas-ft. worth
+624	usa	ia-ne-sd	sioux city
+625	usa	tx	waco-temple-bryan
+626	usa	tx	victoria
+627	usa	ok-tx	wichita falls & lawton
+628	usa	ar-la	monroe-el dorado
+630	usa	al	birmingham (ann and tusc)
+631	usa	ia-mo	ottumwa-kirksville
+632	usa	il-ky-mo-tn	paducah-cape girard-harsbg
+633	usa	nm-tx	odessa-midland
+634	usa	nm-ok-tx	amarillo
+635	usa	tx	austin
+636	usa	tx	harlingen-wslco-brnsvl-mca
+637	usa	ia	cedar rapids-wtrlo-iwc&dub
+638	usa	ks-mo	st. joseph
+639	usa	tn	"jackson, tn"
+640	usa	ar-ms-tn	memphis
+641	usa	tx	san antonio
+642	usa	la	"lafayette, la"
+643	usa	la	lake charles
+644	usa	la	"alexandria, la"
+647	usa	ms	greenwood-greenville
+648	usa	il-in	champaign&sprngfld-decatur
+649	usa	il-in-ky	evansville
+650	usa	ok	oklahoma city
+651	usa	tx	lubbock
+652	usa	ia-mo-ne	omaha
+656	usa	fl	panama city
+657	usa	ok-tx	sherman-ada
+658	usa	mi-wi	green bay-appleton
+659	usa	ky-tn	nashville
+661	usa	tx	san angelo
+662	usa	tx	abilene-sweetwater
+669	usa	wi	madison
+670	usa	ar-ok	ft. smith-fay-sprngdl-rgrs
+671	usa	ks-ok	tulsa
+673	usa	al-ms	columbus-tupelo-w pnt-hstn
+675	usa	il	peoria-bloomington
+676	usa	mi-mn-wi	duluth-superior
+678	usa	ks	wichita-hutchinson plus
+679	usa	ia	des moines-ames
+682	usa	ia-il	davenport-r.island-moline
+686	usa	al-fl-ms	mobile-pensacola (ft walt)
+687	usa	mt-nd-sd	minot-bsmrck-dcknsn(wlstn)
+691	usa	al-tn	huntsville-decatur (flor)
+692	usa	tx	beaumont-port arthur
+693	usa	ar	little rock-pine bluff
+698	usa	al	montgomery-selma
+702	usa	mn-wi	la crosse-eau claire
+705	usa	wi	wausau-rhinelander
+709	usa	tx	tyler-longview(lfkn&ncgd)
+710	usa	ms	hattiesburg-laurel
+711	usa	al-ms	meridian
+716	usa	la-ms	baton rouge
+717	usa	ia-il-mo	quincy-hannibal-keokuk
+718	usa	ms	"jackson, ms"
+722	usa	ks-ne	lincoln & hastings-krny
+724	usa	mn-nd	fargo-valley city
+725	usa	ia-mn-ne-sd	sioux falls(mitchell)
+734	usa	ar	jonesboro
+736	usa	ky	bowling green
+737	usa	mn	mankato
+740	usa	ne	north platte
+743	usa	ak	anchorage
+744	usa	hi	honolulu
+745	usa	ak	fairbanks
+746	usa	ms	biloxi-gulfport
+747	usa	ak	juneau
+749	usa	tx	laredo
+751	usa	co-ne-wy	denver
+752	usa	co	colorado springs-pueblo
+753	usa	az	phoenix (prescott)
+754	usa	mt	butte-bozeman
+755	usa	mt	great falls
+756	usa	mt-wy	billings
+757	usa	id-or	boise
+758	usa	id-wy	idaho fals-pocatllo(jcksn)
+759	usa	ne-wy	cheyenne-scottsbluff
+760	usa	id	twin falls
+762	usa	mt	missoula
+764	usa	mt-sd-wy	rapid city
+765	usa	nm-tx	el paso (las cruces)
+766	usa	mt	helena
+767	usa	wy	casper-riverton
+770	usa	id-nv-ut-wy	salt lake city
+771	usa	az-ca	yuma-el centro
+773	usa	co	grand junction-montrose
+789	usa	az	tucson (sierra vista)
+790	usa	az-co-nm	albuquerque-santa fe
+798	usa	mt	glendive
+800	usa	ca	bakersfield
+801	usa	or	eugene
+802	usa	ca	eureka
+803	usa	ca-nv	los angeles
+804	usa	ca	palm springs
+807	usa	ca	san francisco-oak-san jose
+810	usa	or-wa	yakima-pasco-rchlnd-knnwck
+811	usa	ca-nv	reno
+813	usa	ca-or	medford-klamath falls
+819	usa	wa	seattle-tacoma
+820	usa	or-wa	"portland, or"
+821	usa	or	"bend, or"
+825	usa	ca	san diego
+828	usa	ca	monterey-salinas
+839	usa	nv	las vegas
+855	usa	ca	santabarbra-sanmar-sanluob
+862	usa	ca	sacramnto-stkton-modesto
+866	usa	ca	fresno-visalia
+868	usa	ca	chico-redding
+881	usa	id-mt-or-wa	spokane
+156001	chn	11	beijing
+156002	chn	12	tianjin
+156003	chn	13	shijiazhuang
+156004	chn	13	tangshan
+156005	chn	13	qinhuangdao
+156006	chn	13	handan
+156007	chn	13	xingtai
+156008	chn	13	baoding
+156009	chn	13	zhangjiakou
+156010	chn	13	chengde
+156011	chn	13	cangzhou
+156012	chn	13	langfang
+156013	chn	13	hengshui
+156014	chn	14	taiyuan
+156015	chn	14	datong
+156016	chn	14	yangquan
+156017	chn	14	changzhi
+156018	chn	14	jincheng
+156019	chn	14	shuozhou
+156020	chn	14	jinzhong
+156021	chn	14	yuncheng
+156022	chn	14	xinzhou
+156023	chn	14	linfen
+156024	chn	14	lvliang
+156025	chn	15	hohhot
+156026	chn	15	baotou
+156027	chn	15	wuhai
+156028	chn	15	chifeng
+156029	chn	15	tongliao
+156030	chn	15	ordos
+156031	chn	15	hulun buir
+156032	chn	15	bayan nur city
+156033	chn	15	ulan qab
+156034	chn	15	hinggan league
+156035	chn	15	xilin gol league
+156036	chn	15	alxa league
+156037	chn	21	shenyang
+156038	chn	21	dalian
+156039	chn	21	anshan
+156040	chn	21	fushun
+156041	chn	21	benxi
+156042	chn	21	dandong
+156043	chn	21	jinzhou
+156044	chn	21	yingkou
+156045	chn	21	fuxin
+156046	chn	21	liaoyang
+156047	chn	21	panjin
+156048	chn	21	tieling
+156049	chn	21	chaoyang
+156050	chn	21	huludao
+156051	chn	22	changchun
+156052	chn	22	jilin
+156053	chn	22	siping
+156054	chn	22	liaoyuan
+156055	chn	22	tonghua
+156056	chn	22	baishan
+156057	chn	22	songyuan
+156058	chn	22	baicheng
+156059	chn	22	yanbian korean autonomous prefecture
+156060	chn	23	harbin
+156061	chn	23	qiqihar
+156062	chn	23	jixi
+156063	chn	23	hegang
+156064	chn	23	shuangyashan
+156065	chn	23	daqing
+156066	chn	23	yichun
+156067	chn	23	jiamusi
+156068	chn	23	qitaihe
+156069	chn	23	mudanjiang
+156070	chn	23	heihe
+156071	chn	23	suihua
+156072	chn	23	da hinggan ling prefecture
+156073	chn	31	shanghai
+156074	chn	32	nanjing
+156075	chn	32	wuxi
+156076	chn	32	xuzhou
+156077	chn	32	changzhou
+156078	chn	32	suzhou
+156079	chn	32	nantong
+156080	chn	32	lianyungang
+156081	chn	32	huai'an
+156082	chn	32	yancheng
+156083	chn	32	yangzhou
+156084	chn	32	zhenjiang
+156085	chn	32	taizhou
+156086	chn	32	suqian
+156087	chn	33	hangzhou
+156088	chn	33	ningbo
+156089	chn	33	wenzhou
+156090	chn	33	jiaxing
+156091	chn	33	huzhou
+156092	chn	33	shaoxing
+156093	chn	33	jinhua
+156094	chn	33	quzhou
+156095	chn	33	zhoushan
+156096	chn	33	taizhou
+156097	chn	33	lishui
+156098	chn	34	hefei
+156099	chn	34	wuhu
+156100	chn	34	bengbu
+156101	chn	34	huainan
+156102	chn	34	ma'anshan
+156103	chn	34	huaibei
+156104	chn	34	tongling
+156105	chn	34	anqing
+156106	chn	34	huangshan
+156107	chn	34	chuzhou
+156108	chn	34	fuyang
+156109	chn	34	suzhou
+156110	chn	34	chaohu
+156111	chn	34	lu'an
+156112	chn	34	bozhou
+156113	chn	34	chizhou
+156114	chn	34	xuancheng
+156115	chn	35	fuzhou
+156116	chn	35	xiamen
+156117	chn	35	putian
+156118	chn	35	sanming
+156119	chn	35	quanzhou
+156120	chn	35	zhangzhou
+156121	chn	35	nanping
+156122	chn	35	longyan
+156123	chn	35	ningde
+156124	chn	36	nanchang
+156125	chn	36	jingdezhen
+156126	chn	36	pingxiang
+156127	chn	36	jiujiang
+156128	chn	36	xinyu
+156129	chn	36	yingtan
+156130	chn	36	ganzhou
+156131	chn	36	ji'an
+156132	chn	36	yichun
+156133	chn	36	fuzhou
+156134	chn	36	shangrao
+156135	chn	37	jinan
+156136	chn	37	qingdao
+156137	chn	37	zibo
+156138	chn	37	zaozhuang
+156139	chn	37	dongying
+156140	chn	37	yantai
+156141	chn	37	weifang
+156142	chn	37	jining
+156143	chn	37	tai'an
+156144	chn	37	weihai
+156145	chn	37	rizhao
+156146	chn	37	laiwu
+156147	chn	37	linyi
+156148	chn	37	dezhou
+156149	chn	37	liaocheng
+156150	chn	37	binzhou
+156151	chn	37	heze
+156152	chn	41	zhengzhou
+156153	chn	41	kaifeng
+156154	chn	41	luoyang
+156155	chn	41	pingdingshan
+156156	chn	41	anyang
+156157	chn	41	hebi
+156158	chn	41	xinxiang
+156159	chn	41	jiaozuo
+156160	chn	41	puyang
+156161	chn	41	xuchang
+156162	chn	41	luohe
+156163	chn	41	sanmenxia
+156164	chn	41	nanyang
+156165	chn	41	shangqiu
+156166	chn	41	xinyang
+156167	chn	41	zhoukou
+156168	chn	41	zhumadian
+156169	chn	42	wuhan
+156170	chn	42	huangshi
+156171	chn	42	shiyan
+156172	chn	42	yichang
+156173	chn	42	xiangfan
+156174	chn	42	ezhou
+156175	chn	42	jingmen
+156176	chn	42	xiaogan
+156177	chn	42	jingzhou
+156178	chn	42	huanggang
+156179	chn	42	xianning
+156180	chn	42	suizhou
+156181	chn	42	enshi tujia and miao autonomous prefecture
+156182	chn	43	changsha
+156183	chn	43	zhuzhou
+156184	chn	43	xiangtan
+156185	chn	43	hengyang
+156186	chn	43	shaoyang
+156187	chn	43	yueyang
+156188	chn	43	changde
+156189	chn	43	zhangjiajie
+156190	chn	43	yiyang
+156191	chn	43	chenzhou
+156192	chn	43	yongzhou
+156193	chn	43	huaihua
+156194	chn	43	loudi
+156195	chn	43	xiangxi tujia and miao autonomous prefecture
+156196	chn	44	guangzhou
+156197	chn	44	shaoguan
+156198	chn	44	shenzhen
+156199	chn	44	zhuhai
+156200	chn	44	shantou
+156201	chn	44	foshan
+156202	chn	44	jiangmen
+156203	chn	44	zhanjiang
+156204	chn	44	maoming
+156205	chn	44	zhaoqing
+156206	chn	44	huizhou
+156207	chn	44	meizhou
+156208	chn	44	shanwei
+156209	chn	44	heyuan
+156210	chn	44	yangjiang
+156211	chn	44	qingyuan
+156212	chn	44	dongguan
+156213	chn	44	zhongshan
+156214	chn	44	chaozhou
+156215	chn	44	jieyang
+156216	chn	44	yunfu
+156217	chn	45	nanning
+156218	chn	45	liuzhou
+156219	chn	45	guilin
+156220	chn	45	wuzhou
+156221	chn	45	beihai
+156222	chn	45	fangchenggang
+156223	chn	45	qinzhou
+156224	chn	45	guigang
+156225	chn	45	yulin
+156226	chn	45	baise
+156227	chn	45	hezhou
+156228	chn	45	hechi
+156229	chn	45	laibin
+156230	chn	45	chongzuo
+156231	chn	46	haikou
+156232	chn	46	sanya
+156233	chn	50	chongqing
+156234	chn	51	chengdu
+156235	chn	51	zigong
+156236	chn	51	panzhihua
+156237	chn	51	luzhou
+156238	chn	51	deyang
+156239	chn	51	mianyang
+156240	chn	51	guangyuan
+156241	chn	51	suining
+156242	chn	51	neijiang
+156243	chn	51	leshan
+156244	chn	51	nanchong
+156245	chn	51	meishan
+156246	chn	51	yibin
+156247	chn	51	guang'an
+156248	chn	51	dazhou
+156249	chn	51	ya'an
+156250	chn	51	bazhong
+156251	chn	51	ziyang
+156252	chn	51	aba(ngawa) tibetan and qiang autonomous prefecture
+156253	chn	51	garze tibetan autonomous prefecture
+156254	chn	51	yi autonomous prefecture of liangshan
+156255	chn	52	guiyang
+156256	chn	52	liupanshui
+156257	chn	52	zunyi
+156258	chn	52	anshun
+156259	chn	52	tongren prefecture
+156260	chn	52	qianxinan buyi and miao autonomous prefecture
+156261	chn	52	bijie prefecture
+156262	chn	52	qiandongnan miao and dong autonomous prefecture
+156263	chn	52	qiannan buyi and miao autonomous prefecture
+156264	chn	53	kunming
+156265	chn	53	qujing
+156266	chn	53	yuxi
+156267	chn	53	baoshan
+156268	chn	53	zhaotong
+156269	chn	53	lijiang
+156270	chn	53	pu'er
+156271	chn	53	lincang
+156272	chn	53	chuxiong yi autonomous prefecture
+156273	chn	53	honghe hani and yi autonomous prefecture
+156274	chn	53	wenshan zhuang and miao autonomous prefecture
+156275	chn	53	xishuangbanna dai autonomous prefecture
+156276	chn	53	dali bai autonomous prefecture
+156277	chn	53	dehong dai and jingpo autonomous prefecture
+156278	chn	53	nujiang of the lisu autonomous prefecture
+156279	chn	53	diqing tibetan autonomous prefecture
+156280	chn	54	lhasa city
+156281	chn	54	chamdo prefecture
+156282	chn	54	shannan prefecture
+156283	chn	54	shigatse prefecture
+156284	chn	54	nagqu prefecture
+156285	chn	54	ngari prefecture
+156286	chn	54	nyingchi prefecture
+156287	chn	61	xi'an
+156288	chn	61	tongchuan
+156289	chn	61	baoji
+156290	chn	61	xianyang
+156291	chn	61	weinan
+156292	chn	61	yan'an
+156293	chn	61	hanzhong
+156294	chn	61	yulin
+156295	chn	61	ankang
+156296	chn	61	shangluo
+156297	chn	62	lanzhou
+156298	chn	62	jiayuguan
+156299	chn	62	jinchang
+156300	chn	62	baiyin
+156301	chn	62	tianshui
+156302	chn	62	wuwei
+156303	chn	62	zhangye
+156304	chn	62	pingliang
+156305	chn	62	jiuquan
+156306	chn	62	qingyang
+156307	chn	62	dingxi
+156308	chn	62	longnan
+156309	chn	62	linxia hui autonomous prefecture
+156310	chn	62	gannan tibetan autonomous prefecture
+156311	chn	63	xining
+156312	chn	63	haidong prefecture
+156313	chn	63	haibei tibetan autonomous prefecture
+156314	chn	63	huangnan tibetan autonomous prefecture
+156315	chn	63	hainan tibetan autonomous prefecture
+156316	chn	63	golog tibetan autonomous prefecture
+156317	chn	63	yushu tibetan autonomous prefecture
+156318	chn	63	haixi mongolzu zangzu zizhizhou
+156319	chn	64	yinchuan
+156320	chn	64	shizuishan
+156321	chn	64	wuzhong
+156322	chn	64	guyuan
+156323	chn	64	zhongwei
+156324	chn	65	urumqi municipality
+156325	chn	65	karamay city
+156326	chn	65	turpan area
+156327	chn	65	hami prefecture
+156328	chn	65	changji hui autonomous prefecture
+156329	chn	65	bortala mongol autonomous prefecture
+156330	chn	65	bayingolin mongol autonomous prefecture
+156331	chn	65	aksu prefecture
+156332	chn	65	kizilsu kirghiz autonomous prefecture
+156333	chn	65	kashi prefecture
+156334	chn	65	hotan prefecture
+156335	chn	65	kazak autonomous prefecture of ili
+156336	chn	65	tacheng prefecture
+156337	chn	65	altay prefecture
+250001	fra	v	ain
+250002	fra	s	aisne
+250003	fra	c	allier
+250004	fra	u	alpes-de-haute-provence
+250005	fra	u	hautes-alpes
+250006	fra	u	alpes-maritimes
+250007	fra	v	ardeche
+250008	fra	g	ardennes
+250009	fra	n	ariege
+250010	fra	g	aube
+250011	fra	k	aude
+250012	fra	n	aveyron
+250013	fra	u	bouches-du-rhone
+250014	fra	p	calvados
+250015	fra	c	cantal
+250016	fra	t	charente
+250017	fra	t	charente-maritime
+250018	fra	f	cher
+250019	fra	l	correze
+250020	fra	h	corse-du-sud
+250021	fra	d	cote-d'or
+250022	fra	e	cotes-d'armor
+250023	fra	l	creuse
+250024	fra	b	dordogne
+250025	fra	i	doubs
+250026	fra	v	drome
+250027	fra	q	eure
+250028	fra	f	eure-et-loir
+250029	fra	e	finistere
+250030	fra	k	gard
+250031	fra	n	haute-garonne
+250032	fra	n	gers
+250033	fra	b	gironde
+250034	fra	k	herault
+250035	fra	e	ille-et-vilaine
+250036	fra	f	indre
+250037	fra	f	indre-et-loire
+250038	fra	v	isere
+250039	fra	i	jura
+250040	fra	b	landes
+250041	fra	f	loir-et-cher
+250042	fra	v	loire
+250043	fra	c	haute-loire
+250044	fra	r	loire-atlantique
+250045	fra	f	loiret
+250046	fra	n	lot
+250047	fra	b	lot-et-garonne
+250048	fra	k	lozere
+250049	fra	r	maine-et-loire
+250050	fra	p	manche
+250051	fra	g	marne
+250052	fra	g	haute-marne
+250053	fra	r	mayenne
+250054	fra	m	meurthe-et-moselle
+250055	fra	m	meuse
+250056	fra	e	morbihan
+250057	fra	m	moselle
+250058	fra	d	nievre
+250059	fra	o	nord
+250060	fra	s	oise
+250061	fra	p	orne
+250062	fra	o	pas-de-calais
+250063	fra	c	puy-de-dome
+250064	fra	b	pyrenees-atlantiques
+250065	fra	n	haute-pyrenees
+250066	fra	k	pyrenees-orientales
+250067	fra	a	bas-rhin
+250068	fra	a	haut-rhin
+250069	fra	v	rhone
+250070	fra	i	haute-saone
+250071	fra	d	saone-et-loire
+250072	fra	r	sarthe
+250073	fra	v	savoie
+250074	fra	v	haute-savoie
+250075	fra	j	paris
+250076	fra	q	seine-maritime
+250077	fra	j	seine-et-marne
+250078	fra	j	yvelines
+250079	fra	t	deux-sevres
+250080	fra	s	somme
+250081	fra	n	tarn
+250082	fra	n	tarn-et-garonne
+250083	fra	u	var
+250084	fra	u	vaucluse
+250085	fra	r	vendee
+250086	fra	t	vienne
+250087	fra	l	haute-vienne
+250088	fra	m	vosges
+250089	fra	d	yonne
+250090	fra	i	territoire de belfort
+250091	fra	j	essonne
+250092	fra	j	hauts-de-seine
+250093	fra	j	seine-saint-denis
+250094	fra	j	val-de-marne
+250095	fra	j	val-d'oise
+250096	fra	h	haute-corse
+276001	deu	hb/hh/ni/sh	nielsen i
+276002	deu	nw	nielsen ii
+276003	deu	he/rp/sl	nielsen iiia
+276004	deu	bw	nielsen iiib
+276005	deu	by	nielsen iv
+276006	deu	be	nielsen va/vb
+276007	deu	br/mv/st	nielsen vi
+276008	deu	sn/th	nielsen vii
+410001	kor	11	dobong-gu
+410002	kor	11	dongdaemun-gu
+410003	kor	11	dongjak-gu
+410004	kor	11	eunpyeong-gu
+410005	kor	11	gangbuk-gu
+410006	kor	11	gangdong-gu
+410007	kor	11	gangnam-gu
+410008	kor	11	gangseo-gu seoul
+410009	kor	11	geumcheon-gu
+410010	kor	11	guro-gu
+410011	kor	11	gwanak-gu
+410012	kor	11	gwangjin-gu
+410013	kor	11	jongro-gu
+410014	kor	11	jung-gu seoul
+410015	kor	11	jungrang-gu
+410016	kor	11	mapo-gu
+410017	kor	11	nowon-gu
+410018	kor	11	seocho-gu
+410019	kor	11	seodaemun-gu
+410020	kor	11	seongbuk-gu
+410021	kor	11	seongdong-gu
+410022	kor	11	songpa-gu
+410023	kor	11	yangcheon-gu
+410024	kor	11	yeongdeungpo-gu
+410025	kor	11	yongsan-gu
+410026	kor	26	buk-gu busan
+410027	kor	26	busanjin-gu
+410028	kor	26	dong-gu busan
+410029	kor	26	dongrae-gu
+410030	kor	26	gangseo-gu busan
+410031	kor	26	geumjeong-gu
+410032	kor	26	gijang-gun
+410033	kor	26	haeundae-gu
+410034	kor	26	jung-gu busan
+410035	kor	26	nam-gu busan
+410036	kor	26	saha-gu
+410037	kor	26	sasang-gu
+410038	kor	26	seo-gu busan
+410039	kor	26	suyeong-gu
+410040	kor	26	yeongdo-gu
+410041	kor	26	yeonje-gu
+410042	kor	27	buk-gu daegu
+410043	kor	27	dalseo-gu
+410044	kor	27	dalseong-gun
+410045	kor	27	dong-gu daegu
+410046	kor	27	jung-gu daegu
+410047	kor	27	nam-gu daegu
+410048	kor	27	seo-gu daegu
+410049	kor	27	suseong-gu
+410050	kor	28	bupyeong-gu
+410051	kor	28	dong-gu incheon
+410052	kor	28	ganghwa-gun
+410053	kor	28	gyeyang-gu
+410054	kor	28	jung-gu incheon
+410055	kor	28	namdong-gu
+410056	kor	28	nam-gu incheon
+410057	kor	28	ongjin-gun
+410058	kor	28	seo-gu incheon
+410059	kor	28	yeonsu-gu
+410060	kor	29	buk-gu gwangju
+410061	kor	29	dong-gu gwangju
+410062	kor	29	gwangsan-gu
+410063	kor	29	nam-gu gwangju
+410064	kor	29	seo-gu gwangju
+410065	kor	30	daedeok-gu
+410066	kor	30	dong-gu daejeon
+410067	kor	30	jung-gu daejeon
+410068	kor	30	seo-gu daejeon
+410069	kor	30	yuseong-gu
+410070	kor	31	buk-gu ulsan
+410071	kor	31	dong-gu ulsan
+410072	kor	31	jung-gu ulsan
+410073	kor	31	nam-gu ulsan
+410074	kor	31	ulju-gun
+410075	kor	41	anseong-si
+410076	kor	41	bundang-gu seongnam-si
+410077	kor	41	cheoin-gu yongin-si
+410078	kor	41	danwon-gu ansan-si
+410079	kor	41	deogyang-gu goyang-si
+410080	kor	41	dongan-gu anyang-si
+410081	kor	41	dongducheon-si
+410082	kor	41	gapyeong-gun
+410083	kor	41	giheung-gu yongin-si
+410084	kor	41	gimpo-si
+410085	kor	41	gunpo-si
+410086	kor	41	guri-si
+410087	kor	41	gwacheon-si
+410088	kor	41	gwangju-si
+410089	kor	41	gwangmyeong-si
+410090	kor	41	gwonseon-gu suwon-si
+410091	kor	41	hanam-si
+410092	kor	41	hwaseong-si
+410093	kor	41	icheon-si
+410094	kor	41	ilsandong-gu goyang-si
+410095	kor	41	ilsanseo-gu goyang-si
+410096	kor	41	jangan-gu suwon-si
+410097	kor	41	jungwon-gu seongnam-si
+410098	kor	41	manan-gu anyang-si
+410099	kor	41	namyangju-si
+410100	kor	41	ojeong-gu bucheon-si
+410101	kor	41	osan-si
+410102	kor	41	paju-si
+410103	kor	41	paldal-gu suwon-si
+410104	kor	41	pocheon-si
+410105	kor	41	pyeongtaek-si
+410106	kor	41	sangrok-gu ansan-si
+410107	kor	41	siheung-si
+410108	kor	41	sosa-gu bucheon-si
+410109	kor	41	sujeong-gu seongnam-si
+410110	kor	41	suji-gu yongin-si
+410111	kor	41	uijeongbu-si
+410112	kor	41	uiwang-si
+410113	kor	41	wonmi-gu bucheon-si
+410114	kor	41	yangju-si
+410115	kor	41	yangpyeong-gun
+410116	kor	41	yeoju-gun
+410117	kor	41	yeoncheon-gun
+410118	kor	41	yeongtong-gu suwon-si
+410119	kor	42	cheorwon-gun
+410120	kor	42	chuncheon-si
+410121	kor	42	donghae-si
+410122	kor	42	gangreung-si
+410123	kor	42	goseong-gun gangwon
+410124	kor	42	hoengseong-gun
+410125	kor	42	hongcheon-gun
+410126	kor	42	hwacheon-gun
+410127	kor	42	inje-gun
+410128	kor	42	jeongseon-gun
+410129	kor	42	pyeongchang-gun
+410130	kor	42	samcheok-si
+410131	kor	42	sokcho-si
+410132	kor	42	taebaek-si
+410133	kor	42	wonju-si
+410134	kor	42	yanggu-gun
+410135	kor	42	yangyang-gun
+410136	kor	42	yeongwol-gun
+410137	kor	43	boeun-gun
+410138	kor	43	cheongwon-gun
+410139	kor	43	chungju-si
+410140	kor	43	danyang-gun
+410141	kor	43	eumseong-gun
+410142	kor	43	goesan-gun
+410143	kor	43	heungdeok-gu cheongju-si
+410144	kor	43	jecheon-si
+410145	kor	43	jeungpyeong-gun
+410146	kor	43	jincheon-gun
+410147	kor	43	okcheon-gun
+410148	kor	43	sangdang-gu cheongju-si
+410149	kor	43	yeongdong-gun
+410150	kor	44	asan-si
+410151	kor	44	boryeong-si
+410152	kor	44	buyeo-gun
+410153	kor	44	cheongyang-gun
+410154	kor	44	dangjin-gun
+410155	kor	44	dongnam-gu cheonan-si
+410156	kor	44	geumsan-gun
+410157	kor	44	gongju-si
+410158	kor	44	gyeryong-si
+410159	kor	44	hongseong-gun
+410160	kor	44	nonsan-si
+410161	kor	44	seobuk-gu cheonan-si
+410162	kor	44	seocheon-gun
+410163	kor	44	seosan-si
+410164	kor	44	taean-gun
+410165	kor	44	yeongi-gun
+410166	kor	44	yesan-gun
+410167	kor	45	buan-gun
+410168	kor	45	deokjin-gu jeonju-si
+410169	kor	45	gimje-si
+410170	kor	45	gochang-gun
+410171	kor	45	gunsan-si
+410172	kor	45	iksan-si
+410173	kor	45	imsil-gun
+410174	kor	45	jangsu-gun
+410175	kor	45	jeongeup-si
+410176	kor	45	jinan-gun
+410177	kor	45	muju-gun
+410178	kor	45	namwon-si
+410179	kor	45	sunchang-gun
+410180	kor	45	wanju-gun
+410181	kor	45	wansan-gu jeonju-si
+410182	kor	46	boseong-gun
+410183	kor	46	damyang-gun
+410184	kor	46	gangjin-gun
+410185	kor	46	goheung-gun
+410186	kor	46	gokseong-gun
+410187	kor	46	gurye-gun
+410188	kor	46	gwangyang-si
+410189	kor	46	haenam-gun
+410190	kor	46	hampyeong-gun
+410191	kor	46	hwasun-gun
+410192	kor	46	jangheung-gun
+410193	kor	46	jangseong-gun
+410194	kor	46	jindo-gun
+410195	kor	46	mokpo-si
+410196	kor	46	muan-gun
+410197	kor	46	naju-si
+410198	kor	46	sinan-gun
+410199	kor	46	suncheon-si
+410200	kor	46	wando-gun
+410201	kor	46	yeongam-gun
+410202	kor	46	yeonggwang-gun
+410203	kor	46	yeosu-si
+410204	kor	47	andong-si
+410205	kor	47	bonghwa-gun
+410206	kor	47	buk-gu pohang-si
+410207	kor	47	cheongdo-gun
+410208	kor	47	cheongsong-gun
+410209	kor	47	chilgok-gun
+410210	kor	47	gimcheon-si
+410211	kor	47	goryeong-gun
+410212	kor	47	gumi-si
+410213	kor	47	gunwi-gun
+410214	kor	47	gyeongju-si
+410215	kor	47	gyeongsan-si
+410216	kor	47	mungyeong-si
+410217	kor	47	nam-gu pohang-si
+410218	kor	47	sangju-si
+410219	kor	47	seongju-gun
+410220	kor	47	uiseong-gun
+410221	kor	47	uljin-gun
+410222	kor	47	ulleung-gun
+410223	kor	47	yecheon-gun
+410224	kor	47	yeongcheon-si
+410225	kor	47	yeongdeok-gun
+410226	kor	47	yeongju-si
+410227	kor	47	yeongyang-gun
+410228	kor	48	changnyeong-gun
+410229	kor	48	changwon-si
+410230	kor	48	geochang-gun
+410231	kor	48	geoje-si
+410232	kor	48	gimhae-si
+410233	kor	48	goseong-gun gyeongsangbuk
+410234	kor	48	hadong-gun
+410235	kor	48	haman-gun
+410236	kor	48	hamyang-gun
+410237	kor	48	hapcheon-gun
+410238	kor	48	jinhae-si
+410239	kor	48	jinju-si
+410240	kor	48	masan-si
+410241	kor	48	miryang-si
+410242	kor	48	namhae-gun
+410243	kor	48	sacheon-si
+410244	kor	48	sancheong-gun
+410245	kor	48	tongyeong-si
+410246	kor	48	uiryeong-gun
+410247	kor	48	yangsan-si
+410248	kor	49	jeju-si
+410249	kor	49	seogwipo-si
+643001	rus	bel/bry/iva/klu/kos/krs/lip/mos/mow/orl/rya/smo/tam/tul/tve/vla/vor/yar	central
+643002	rus	ad/ast/kda/kl/ros/vgg	southern
+643003	rus	arr/kgd/ko/kr/len/mur/nen/ngr/psk/spe/vlg	northwestern
+643004	rus	amu/chu/kam/kha/mag/pri/sa/sak/yev	far eastern
+643005	rus	al/alt/bu/irr/kem/kk/kya/nvs/oms/tom/ty/zab	siberian
+643006	rus	che/kgn/khm/sve/tyu/yan/	ural
+643007	rus	ba/cu/kir/me/mo/niz/ore/per/pnz/sam/sar/ta/ud/uly	volga
+643008	rus	ce/da/in/kb/kc/se/sta	north caucasian
+643009	rus	43	crimean
+826001	gbr	eng	anglia
+826002	gbr	eng/sct	border
+826003	gbr	eng	central
+826004	gbr	eng	granada
+826005	gbr	eng	london
+826006	gbr	eng	meridian
+826007	gbr	sct	stv north (grampian)
+826008	gbr	eng	tyne tees
+826009	gbr	nir	utv
+826010	gbr	eng/wls	wales and west
+826011	gbr	eng	westcountry
+826012	gbr	eng	yorkshire
+826013	gbr	eng	anglia/central
+826014	gbr	eng	anglia/london
+826015	gbr	eng	anglia/yorkshire
+826016	gbr	eng/iom	border/granada
+826017	gbr	sct	stv central (scottish)
+826018	gbr	eng	border/tyne tees
+826021	gbr	eng	central/granada
+826022	gbr	eng	central/london
+826023	gbr	eng	central/wales and west
+826024	gbr	eng	central/yorkshire
+826025	gbr	eng/wls	granada/wales and west
+826026	gbr	eng	granada/yorkshire
+826027	gbr	eng	london/meridian
+826028	gbr	eng/wls	meridian/wales and west
+826029	gbr	eng	meridian/westcountry
+826030	gbr	eng	tyne tees/yorkshire
+826031	gbr	eng/wls	wales and west/westcountry
+826032	gbr	sct	stv north/stv central
+826033	gbr	sct	stv north
+826034	gbr	sct	stv south
+826035	gbr	nir	utv
+826036	gbr	eng	itv channel television
+826037	gbr	eng	itv border
+826038	gbr	eng	itv tyne tees
+826039	gbr	eng	itv yorkshire
+826040	gbr	eng	itv granada
+826041	gbr	wls	itv wales
+826042	gbr	eng	itv central
+826043	gbr	eng	itv anglia
+826044	gbr	eng	itv london
+826045	gbr	eng	itv meridian
+826046	gbr	eng	itv westcountry
+826047	gbr	eng	itv west

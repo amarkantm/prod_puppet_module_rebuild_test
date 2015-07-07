@@ -1,0 +1,56 @@
+# Added by "rtb/OverrideConfig.properties.zookeeper.erb"
+#############
+# Zookeeper #
+#############
+<%
+    # Initial connectionString
+    connectionString=""
+    # Number of zookeeper servers
+    case @domain
+    when "dc01.revsci.net"
+        zook_count=5
+    when "sea1.audsci.net"
+        zook_count=5
+    when "dub1.audsci.net"
+        zook_count=3
+    when "hkg2.audsci.net"
+        zook_count=5
+    when "fra1.audsci.net"
+        zook_count=5
+    else
+        zook_count=0
+    end
+    
+    #Settings for standard SILO components
+    if @hostname =~ /^(pd[0-9]{0,2})-rtbs([0-9]{2}).*$/
+        server_pod=$1
+        server_silo=$2
+        #loop through number of zookeeprs and generate config
+        for iter_zook in 1..zook_count
+            connectionString+="#{server_pod}-rtbs%02d-zook01.#{@domain}:2181," % iter_zook
+        end
+        #remove trailing comma
+        connectionString=connectionString[0..-2]
+    #Settings for EC2 SILO components
+    elsif @hostname =~ /^(pd8)-(rtbs[0-9]{2}).*$/
+        server_pod=$1
+        server_silo=$2
+        #loop through number of zookeeprs and generate config
+        for iter_zook in 1..zook_count
+            connectionString+="#{server_pod}-#{server_silo}-zook%02d.#{@domain}:2181," % iter_zook
+        end
+        #remove trailing comma
+        connectionString=connectionString[0..-2]
+    #Settings for NON-Silo components
+    elsif @hostname =~ /^(dc1)-rtbsatweb([0-9]{2})$/
+        server_pod=$1
+        for iter_zook in 1..zook_count
+            connectionString+="#{server_pod}-rtbzook%02d.#{@domain}:2181," % iter_zook
+        end
+        #remove trailing comma
+        connectionString=connectionString[0..-2]
+    end
+-%>
+apollo.zookeeper.connectionString=<%= connectionString %>
+# End of "rtb/OverrideConfig.properties.zookeeper.erb"
+

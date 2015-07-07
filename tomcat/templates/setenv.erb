@@ -1,0 +1,100 @@
+# Puppet controlled file
+# stash:old-puppet:manifests/prod/modules/rtbbid/templates/setenv.erb
+
+<%
+    # calcualte our memory size in MB
+    mem,unit = @memorysize.split
+    case unit
+    when "GB"
+        mem_multiplier=1000
+    when "TB"
+        mem_multiplier=1000000
+    else
+        mem_multiplier=1
+    end
+    memory_size_mb=(mem.to_f * mem_multiplier)
+
+if @domain == "sea1.audsci.net"
+    if memory_size_mb >= 3584
+        jvm_memory="-Xms2560m -Xmx3072m"
+    elsif memory_size_mb > 2048
+        jvm_memory="-Xms2458m -Xmx2458m"
+    else
+        jvm_memory="-Xms1024m -Xmx1024m"
+    end
+else
+    # calculate JVM memory sizes
+    if memory_size_mb >= 3584
+        jvm_memory="-Xms2048m -Xmx2560m"
+    elsif memory_size_mb > 2048
+        jvm_memory="-Xms2048m -Xmx2048m"
+    else
+        jvm_memory="-Xms1024m -Xmx1024m"
+    end
+end
+
+
+    # Set default CATALINA_OPTS values
+    catalina_opts = jvm_memory +
+                    " -server" +
+                    " -Dserver.name=$HOSTNAME" +
+                    " -XX:+UseParallelGC" +
+                    " -XX:HeapDumpPath=/var/lib/tomcat/dumps" + 
+                    " -Dcom.sun.management.jmxremote" +
+                    " -Dcom.sun.management.jmxremote.port=9012" +
+                    " -Dcom.sun.management.jmxremote.ssl=false" +
+                    " -Dcom.sun.management.jmxremote.authenticate=false" +
+                    " -XX:+HeapDumpOnOutOfMemoryError" +
+                    " -Xloggc:${GC_LOG}" +
+		    " -XX:+PrintGCDetails" +
+		    " -XX:+PrintGCDateStamps"
+
+    # Set default values for LTM options
+    use_ltm_status_script = "YES"
+    use_ltm_status_script_ro = "NO"
+    ltm_status_script = "/usr/local/f5_ltm/switchNodeStatus2.pl"
+
+    # Use a case/switch control to set domain/pod specific variables
+    # add pod specific catalina opts if necessary
+    pod_catalina_opts = ""
+    case @domain
+    when "sea1.audsci.net"
+    when "fra1.audsci.net"
+    when "hnd1.audsci.net"
+        ltm_status_script = "/usr/local/haproxy_ltm/haproxy_switch_node_status.sh"
+    when "dub1.audsci.net"
+        use_ltm_status_script = "NO"
+        ltm_status_script = "/usr/local/haproxy_ltm/haproxy_switch_node_status.sh"
+    when "hkg1.audsci.net"
+    when "hkg2.audsci.net"
+    end
+
+    # Concatentate catalina_opts and pod_catalina_opts
+    catalina_opts.concat(pod_catalina_opts)
+-%>
+export APP_USER=tomcat
+export APP_UID=`id -u $APP_USER`
+export APP_NAME="rtbbidder"
+export CATALINA_DATE=`date +%Y%m%d_%H%M%S`
+export TOMCAT_DIR=/usr/local/tomcat
+export CATALINA_BASE="$TOMCAT_DIR"
+export CATALINA_HOME="$TOMCAT_DIR"
+export CATALINA_SCRIPT="/usr/local/tomcat/bin/catalina.sh"
+export BASEDIR="$TOMCAT_DIR"
+export CATALINA_PID="/var/rsi/run/catalina.pid"
+export CATALINA_CLASSPATH="${TOMCAT_DIR}/bin/setclasspath.sh"
+export CATALINA_TMPDIR="/var/rsi/tomcat/tmp/${APP_NAME}"
+export CATALINA_WORK_DIR="/var/rsi/tomcat/work/${APP_NAME}"
+export CATALINA_OUT_DIR="/var/rsi/logs/${APP_NAME}"
+export CATALINA_OUT="${CATALINA_OUT_DIR}/tomcat_${APP_NAME}_stdout.${CATALINA_DATE}.log"
+export GC_LOG="${CATALINA_OUT_DIR}/${APP_NAME}-gc_${CATALINA_DATE}.log"
+export LTM_STATUS_SCRIPT="<%= ltm_status_script %>"
+export USE_LTM_STATUS_SCRIPT="<%= use_ltm_status_script %>"
+export USE_LTM_STATUS_SCRIPT_READ_ONLY="<%= use_ltm_status_script_ro %>"
+export DELETE_WORKDIR_ON_SHUTDOWN="NO"
+export CATALINA_ADMIN_PORT="8005" 
+export SPLUNK_LOGDIR="/var/rsi/splunklogs"
+export INIT_SCRIPT="/etc/init.d/tomcat"
+export IPPROPS_APP_DIR="/var/rsi/ipprops"
+export IPPROPS_ARCHIVE_FILE="/var/rsi/ipprops-archive/ipprops.tar"
+export CATALINA_OPTS="<%= catalina_opts %>"

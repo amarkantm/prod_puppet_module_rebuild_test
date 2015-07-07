@@ -1,0 +1,264 @@
+# Ansible managed: /home/paulr/monoceros/ansible/common/roles/tomcat/templates/etc_init.d_tomcat.j2 modified on 2015-04-24 22:25:33 by paulr on dc1-ansible01
+#!/bin/sh
+#
+# chkconfig:    2345 90 10
+# description:  Tomcat web application / servlet container
+# processname:  java
+# config:       /usr/local/tomcat/bin/setenv.sh
+# pidfile:      /var/rsi/run/tomcat/tomcat.pid
+# user:         tomcat
+#
+### BEGIN INIT INFO
+# Provides:          tomcat
+# Description:       Start/Stop tomcat
+# Default-Start:     3 4 5
+# Default-Stop:      0 1 2 6
+# Required-Start:    $local_fs $remote_fs $network $time $named
+# Required-Stop:     $local_fs $remote_fs $network $time $named
+# Should-Start:
+# Should-Stop:
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "$NETWORKING" = "no" ] && exit 0
+
+RM_BIN=$( which rm );
+TOUCH_BIN=$( which touch );
+DATE_BIN=$( which date );
+ECHO_BIN=$( which echo );
+CAT_BIN=$( which cat );
+PS_BIN=$( which ps );
+SLEEP_BIN=$( which sleep );
+GREP_BIN=$( which grep );
+SED_BIN=$( which sed );
+AWK_BIN=$( which awk );
+KILL_BIN=$( which kill );
+NOHUP_BIN=$( which nohup );
+NETSTAT_BIN=$( which netstat );
+
+TOMCAT_BIN="/usr/local/tomcat/bin/catalina.sh";
+TOMCAT_CONF_FILE="/usr/local/tomcat/bin/setenv.sh";
+TOMCAT_LOGS_DIR="/usr/local/tomcat/logs";
+TOMCAT_LOADBALANCER_TOGGLE_ENABLE="NO"
+TOMCAT_LOADBALANCER_TOGGLE_SKIP="$2";
+TOMCAT_LOADBALANCER_BIN="/usr/local/tomcat/bin/nodeStatus.pl";
+TOMCAT_START_COMMAND="start"
+TOMCAT_STOP_COMMAND="stop 60 -force"
+DAEMON="tomcat";
+DEFAULT_TIMEOUT=60;
+
+[ -f /etc/default/tomcat ] && . /etc/default/tomcat
+
+LOCKFILE=/var/rsi/run/tomcat/tomcat.lock;
+PIDFILE=/var/rsi/run/tomcat/tomcat.pid;
+TOMCAT_STDOUT=/usr/local/tomcat/logs/tomcat_stdout.log;
+TOMCAT_NODESTATUS_STDOUT=/usr/local/tomcat/logs/tomcat_nodestatus.log;
+
+getUnixTimestamp() {
+    local _argv=$1;
+    local _result=`date +%s`;
+
+    if [[ "$_argv" ]]; then
+        eval $_argv="'$_result'"
+    else
+        $ECHO_BIN "$_result"
+    fi
+}
+
+log() {
+    local _timestamp=$( getUnixTimestamp );
+
+    $ECHO_BIN "${_timestamp} $1";
+}
+
+enableServiceState() {
+    local _rc=0;
+
+    if [ "${TOMCAT_LOADBALANCER_TOGGLE_ENABLE}" == "YES" ] && [ "$TOMCAT_LOADBALANCER_TOGGLE_SKIP" != "--skipF5" ]; then
+        for ((i=0; i < $DEFAULT_TIMEOUT; i++)); do
+            $NETSTAT_BIN -lnt | $GREP_BIN -q "^tcp.*:8080.*LISTEN" 2>/dev/null;
+            _rc=$?;
+
+                        if [ $i -lt $DEFAULT_TIMEOUT ] && [ $_rc -ne 0 ]; then
+                $SLEEP_BIN 1;
+            elif [ $_rc -eq 0 ]; then
+                log "INFO: Waited ${i} seconds for tomcat port 8080 before enabling service state";
+                result=$( $TOMCAT_LOADBALANCER_BIN 'enable' | $SED_BIN 's/F5_LTM Said: //' );
+                _rc=$?;
+
+                if [ $_rc -eq 0 ]; then
+                    log "INFO: ${result}";
+                else
+                    log "ERROR: F5 LTM set service state failed: ${result}";
+                fi
+
+                break;
+            elif [ $_rc -ne 0 ]; then
+                log "ERROR: Abandoned F5 LTM set service state operation. Service did not appear to start.";
+                exit 1;
+                        fi
+        done
+    elif [ "${TOMCAT_LOADBALANCER_TOGGLE_ENABLE}" == "NO" ]; then
+        log "WARN: F5 LTM set service state enabled is disabled.";
+    elif [ "$TOMCAT_LOADBALANCER_TOGGLE_SKIP" == "--skipF5" ]; then
+        log "WARN: F5 LTM set service state enabled was skipped.";
+    fi
+
+    return $_rc;
+}
+
+disableServiceState() {
+    local _rc=0;
+
+    if [ "${TOMCAT_LOADBALANCER_TOGGLE_ENABLE}" == "YES" ] && [ "$TOMCAT_LOADBALANCER_TOGGLE_SKIP" != "--skipF5" ]; then
+
+                result=$( $TOMCAT_LOADBALANCER_BIN 'disable' | $SED_BIN 's/F5_LTM Said: //' );
+        _rc=$?;
+
+        if [ $_rc -eq 0 ]; then
+            log "INFO: ${result}";
+        else
+            log "ERROR: F5 LTM set service state failed: ${result}";
+        fi
+            elif [ "${TOMCAT_LOADBALANCER_TOGGLE_ENABLE}" == "NO" ]; then
+        log "WARN: F5 LTM set service state disabled is disabled.";
+    elif [ "$TOMCAT_LOADBALANCER_TOGGLE_SKIP" == "--skipF5" ]; then
+        log "WARN: F5 LTM set service state disabled was skipped.";
+    fi
+
+    return $_rc;
+}
+
+start() {
+    local _rc;
+
+    [ -x $TOMCAT_BIN ] || exit 5;
+    [ -f $TOMCAT_CONF_FILE ] || exit 6;
+    [[ -f $TOMCAT_LOADBALANCER_BIN || "${TOMCAT_LOADBALANCER_TOGGLE_ENABLE}" == "NO" ]] || exit 7;
+
+    if status &> /dev/null; then
+        $ECHO_BIN "$DAEMON already running; aborting" >&2;
+        return 1;
+    else
+        $ECHO_BIN -n "Starting $DAEMON: ... ";
+
+        daemon --user=tomcat "$TOMCAT_BIN ${TOMCAT_START_COMMAND} >> $TOMCAT_STDOUT";
+        _rc=$?;
+
+        $ECHO_BIN;
+        $SLEEP_BIN 5;
+
+        if [ $_rc -eq 0 ]; then
+            $TOUCH_BIN $LOCKFILE;
+            enableServiceState >> $TOMCAT_NODESTATUS_STDOUT;
+        fi
+
+        return $_rc;
+    fi
+}
+
+stop() {
+    local _signal=${1:-TERM};
+    local _pid _rc;
+
+    if [ -f $PIDFILE ]; then
+        _pid=$( $CAT_BIN $PIDFILE );
+
+        $ECHO_BIN -n "Stopping $DAEMON: ... ";
+
+        disableServiceState >> $TOMCAT_NODESTATUS_STDOUT;
+
+        $SLEEP_BIN 5;
+
+        daemon --user=tomcat "$TOMCAT_BIN ${TOMCAT_STOP_COMMAND} >> $TOMCAT_STDOUT";
+        _rc=$?;
+
+        if [ $_rc -eq 0 ] && [[ "${_signal}" =~ TERM|KILL ]]; then
+            success && $ECHO_BIN;
+            $RM_BIN -f $LOCKFILE $PIDFILE &> /dev/null;
+        fi
+
+        return $_rc;
+    else
+        $ECHO_BIN "$DAEMON is not running" >&2;
+        return 3;
+    fi
+}
+
+restart() {
+    stop 2> /dev/null;
+
+    $SLEEP_BIN 5;
+
+    start;
+}
+
+status() {
+    local _pid;
+        if [ -f $PIDFILE ]; then
+        _pid=$( $CAT_BIN $PIDFILE );
+
+        if [ -x /proc/$_pid ] && $KILL_BIN -0 $_pid &> /dev/null; then
+            $ECHO_BIN "$DAEMON is running"
+            $ECHO_BIN "F5 LTM Status (pd4-lb01.hkg3.audsci.net): $( $TOMCAT_LOADBALANCER_BIN | $SED_BIN 's/F5_LTM Said: //' )";
+            return 0;
+        else
+            $ECHO_BIN "$DAEMON status is unknown due to insufficient privileges" >&2;
+            return 4;
+        fi
+
+        $ECHO_BIN "$DAEMON is dead and $PIDFILE exists" >&2;
+        return 1;
+    else
+        $ECHO_BIN "$DAEMON is not running"
+        $ECHO_BIN "F5 LTM Status: (pd4-lb01.hkg3.audsci.net): $( $TOMCAT_LOADBALANCER_BIN | $SED_BIN 's/F5_LTM Said: //' )" >&2;
+        return 3;
+    fi
+    }
+
+signalRecursively() {
+    local _pid=$1;
+    local _signal=${2:-TERM};
+
+    if [ -x /proc/$_pid ] && $KILL_BIN -0 $_pid &> /dev/null; then
+
+        for _child in $( $PS_BIN -o pid --no-headers --ppid ${_pid} ); do
+            signalRecursively $_child ${_signal};
+        done
+
+        $KILL_BIN -${_signal} $_pid &> /dev/null;
+
+        return 0;
+    else
+        return 1;
+    fi
+}
+
+case "$1" in
+    start)
+        start;
+    ;;
+    stop)
+        stop;
+    ;;
+    kill)
+        stop STOP;
+        stop KILL;
+    ;;
+    status)
+        status;
+    ;;
+    restart)
+        restart;
+    ;;
+    *)
+        $ECHO_BIN "Usage: $0 {start|stop|kill|status|restart} [--skipF5]";
+        exit 1;
+    ;;
+esac

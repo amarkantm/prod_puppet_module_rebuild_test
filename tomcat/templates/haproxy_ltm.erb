@@ -1,0 +1,70 @@
+#!/bin/bash
+# managed by puppet #
+<%
+    # Use a case/switch control to set domain specific variables
+    hostname =~ /^(pd[0-9]{1,})-rtbs[0-9]{2}-(no)?bid[0-9]{2}$/
+    pod = $1
+    haproxy_host = pod + "-rtbbid-haproxy01." + domain
+-%>
+
+### passed in vars:
+# <action> <backend> <listener>
+HAPROXY_HOST=<%= haproxy_host %>
+HOSTNAME=`hostname`
+ACTION=$1
+REMOTE_HAPROXY_CONTROL=/usr/local/sbin/haproxy_control.py
+HAPROXY_BACKEND=rtb_bid_http
+RUNAS=tomcat
+RUNAS_UID=`id -u $RUNAS`
+
+# usage for this script
+function usage {
+    echo "haproxy_ltm <action>"
+    echo "action        - action to perfor (disable or enable)"
+    echo "remote_script - HARD CODED BIDDER specific version - /usr/local/sbin/haproxy_control.py"
+    echo "backend       - HARD CODED BIDDER specific version - rtb_bid_http"
+}
+
+# check for -h or --help flag
+for args in $*; do
+    if [ ${args} == "-h" ] || [ ${args} == "--help" ]; then
+        usage
+        exit 255
+    fi
+done
+
+# check action
+if [ "${ACTION}" != "enable" ] && [ "${ACTION}" != "disable" ]; then
+    echo "ERROR: Invalid action ${ACTION} - must be enable or disable"
+    usage
+    exit 1
+fi
+# check remote_haproxy_control
+if [ "${REMOTE_HAPROXY_CONTROL}x" == "x" ]; then
+    echo "ERROR: path to remove haproxy control script required"
+    usage
+    exit 1
+fi
+#check haproxy_backend
+if [ "${HAPROXY_BACKEND}x" == "x" ]; then
+    echo "ERROR: backend listener (pool) for haproxy required"
+    usage
+    exit 1
+fi
+
+# must run as proper user
+if [ `id -u` -ne ${RUNAS_UID} ]; then
+    echo "ERROR: This script must be run as the ${RUNAS} user"
+    exit 1
+fi
+
+ssh ${RUNAS}@${HAPROXY_HOST} "sudo ${REMOTE_HAPROXY_CONTROL} -a ${ACTION}  -s ${HOSTNAME} -b ${HAPROXY_BACKEND} ${REMOTE_HAPROXY_LISTENER}"
+EXIT_CODE=$?
+
+if [ ${EXIT_CODE} -ne 0 ]; then
+    echo "ERROR: Bad exit code from remote haproxy control script."
+    exit 1
+else
+    echo "Executed ${ACTION} on ${HOSTNAME}"
+    exit 0
+fi

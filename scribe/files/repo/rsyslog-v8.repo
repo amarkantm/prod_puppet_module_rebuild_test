@@ -1,0 +1,7 @@
+[rsyslog-v8]
+name=RSyslog v8 - System Logger
+baseurl=http://172.21.17.56:8081/repos/external/rpm/rsyslog-v8-stable/
+enabled=1
+priority=10
+gpgcheck=0
+

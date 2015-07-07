@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+Ansible managed: /home/paulr/monoceros/ansible/media/roles/media-bidder-audsci.net/templates/tomcat_conf_server.xml.j2 modified on 2015-04-24 22:25:33 by paulr on dc1-ansible01
+-->
+<Server port="8005" shutdown="SHUTDOWN">
+    <Service name="Catalina">
+        <Connector port="8080" protocol="HTTP/1.1" maxHttpHeaderSize="65536" maxThreads="150"
+            keepAliveTimeout="100" maxKeepAliveRequests="-1" enableLookups="false" acceptCount="100" maxPostSize="0"
+            URIEncoding="UTF-8" disableUploadTimeout="true" connectionTimeout="20000"
+            minSpareThreads="150" compression="on" compressionMinSize="2048" />
+        <Engine name="Catalina" defaultHost="localhost">
+            <Host name="localhost" unpackWARs="false" autoDeploy="false" deployOnStartup="true" workDir="/var/rsi/tomcat/work">
+                <Context path="/rtbbidder" docBase="/var/rsi/tomcat/webapps/rtbbidder/rtbbidder" reloadable="true" crossContext="true" />
+            </Host>
+        </Engine>
+    </Service>
+</Server>
+

@@ -1,0 +1,60 @@
+# MANAGED BY PUPPET #
+<%
+    # Use a case/switch control to set domain specific variables
+    case @domain
+    when "dc01.revsci.net"
+        pod_prefix = "dc1pd"
+    when "sea1.audsci.net"
+        if @hostname =~ /^dc1pd-.*$/
+            pod_prefix = "dc1pd"
+        elsif @hostname =~ /^pd0-.*$/
+            pod_prefix = "pd0"
+        end
+    when "hkg2.audsci.net"
+        pod_prefix = "pd2"
+    when "fra1.audsci.net"
+        pod_prefix = "pd6"
+    when "hnd1.audsci.net"
+        pod_prefix = "pd7"
+    else
+        clust_name = "NULL"
+    end
+-%>
+
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<beans>
+  <bean name='VoldemortConfig' class='com.audiencescience.service.user.util.VoldemortHelper$VoldemortSpringConfig'>
+    <property name='bootstrapURLs'>
+      <list>
+        <value>tcp://<%= pod_prefix %>-voldemort01.<%= @domain %>:6666</value>
+        <value>tcp://<%= pod_prefix %>-voldemort02.<%= @domain %>:6666</value>
+        <value>tcp://<%= pod_prefix %>-voldemort03.<%= @domain %>:6666</value>
+        <value>tcp://<%= pod_prefix %>-voldemort04.<%= @domain %>:6666</value>
+        <value>tcp://<%= pod_prefix %>-voldemort05.<%= @domain %>:6666</value>
+      </list>
+    </property>
+    <property name='enableJMX'                   value='true'/>
+    <property name='maxNumBootstrapAttempts'     value='2'/>
+    <property name='maxConPerNode'               value='6'/>
+    <property name='maxNumQueuedRequests'        value='50'/>
+    <property name='maxNumThreads'               value='5'/>
+    <property name='maxTotalCon'                 value='500'/>
+    <property name='socketBufferBytes'           value='65536'/>
+<!--
+setConnectionTimeout(int, TimeUnit)   500 ms
+setNodeBannagePeriod(int, TimeUnit) 30000 ms
+setRoutingTimeout(int, TimeUnit)    15000 ms
+setSocketTimeout(int, TimeUnit)      5000 ms
+setThreadIdleTime(long, TimeUnit)  100000 ms
+    <property name='requestFormatType(RequestFormatType)' value=''/> <!- -  RequestFormatType.VOLDEMORT_V1 - ->
+    <property name='routingTier(RoutingTier)'   value=''/>          <!- -  RoutingTier.CLIENT - ->
+    <property name='serializerFactory(SerializerFactory)' value=''/> <!- -  DefaultSerializerFactory - ->
+ -->
+
+  </bean>
+  <bean name='UserDataService' class='com.audiencescience.service.user.UserDataServiceVoldemortImpl'>
+    <property name='voldemortConfig' ref='VoldemortConfig' />
+  </bean>
+</beans>
+
