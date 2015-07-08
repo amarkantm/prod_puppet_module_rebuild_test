@@ -1,6 +1,6 @@
 [asci-centos6.x-internal]
 name=asci-centos6.x-internal
-baseurl=http://172.21.17.56:8081/repos/production/rpm/asci6/
+baseurl=http://amar_normal_host:8081/repos/production/rpm/asci6/
 enabled=1
 gpgcheck=0
 priority=90

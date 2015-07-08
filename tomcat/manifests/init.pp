@@ -55,7 +55,7 @@ class tomcat::rtbbidder::dir {
 
     $rtbbid_tomcat_dirs = [
 
-        '/var/rsi/rtb/',
+#        '/var/rsi/rtb/',
         '/var/rsi/tomcat/webapps/rtbbidder',
         '/var/rsi/tomcat/work/rtbbidder',
         '/var/rsi/tomcat/tmp/rtbbidder',

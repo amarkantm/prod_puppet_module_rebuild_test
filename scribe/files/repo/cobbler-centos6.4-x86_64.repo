@@ -1,5 +1,5 @@
 [cobbler-centos6.4-x86_64]
-baseurl=http://172.21.17.56:8083/cobbler/ks_mirror/centos6.4-x86_64/
+baseurl=http://amar_normal_host:8083/cobbler/ks_mirror/centos6.4-x86_64/
 enabled=1
 gpgcheck=0
 priority=98

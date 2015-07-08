@@ -1,6 +1,6 @@
 [asci-centos6.x-upstream]
 name=asci-centos6.x-upstream
-baseurl=http://172.21.17.56:8082/yum/centos6.x/
+baseurl=http://amar_normal_host:8082/yum/centos6.x/
 enabled=1
 gpgcheck=0
 priority=99

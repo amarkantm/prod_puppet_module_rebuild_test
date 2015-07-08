@@ -19,8 +19,9 @@ class jdk::jdk6u45 {
 }
 
 
+
 class jdk {
 
-include jdk::jdk6u45
+include jdk::jdk8u45
 
 }
