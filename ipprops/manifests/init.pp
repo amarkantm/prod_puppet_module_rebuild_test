@@ -38,43 +38,43 @@
 class ipprops {
 
     file {
-        "/var/rsi/rtb/ipprops.config":
-            mode    => 444,
+        '/var/rsi/rtb/ipprops.config':
+            mode    => '0444',
             owner   => tomcat,
             group   => tomcat,
-            require => File["/var/rsi/rtb"],
+            require => File['/var/rsi/rtb'],
             ensure  => present;
 
-        "/var/rsi/rtb/ipprops":
+        '/var/rsi/rtb/ipprops':
             ensure => link,
-            mode   => 755,
-            target => "/var/rsi/ipprops",
+            mode   => '0755',
+            target => '/var/rsi/ipprops',
             force  => true;
 
-        "/var/rsi/ipprops":
+        '/var/rsi/ipprops':
             ensure      => directory,
             owner       => tomcat,
             group       => tomcat,
-            mode        => 755,
+            mode        => '0755',
             checksum    => mtime,
             links       => follow,
             backup      => false,
             recurse     => true,
             recurselimit    => 1,
-            require     => Class["bidder::prod::config"];
+            require     => Class['bidder::config'];
 
-        "/var/rsi/ipprops-archive":
+        '/var/rsi/ipprops-archive':
             ensure      => directory,
             owner       => tomcat,
             group       => tomcat,
-            mode        => 755,
+            mode        => '0755',
             checksum    => mtime,
             links       => follow,
             backup      => false,
             recurse     => true,
             recurselimit    => 1,
-            require     => Class["bidder::prod::config"],
-            source      => "puppet:///modules/ipprops/ipprops-archive";
+            require     => Class['bidder::config'],
+            source      => 'puppet:///modules/ipprops/ipprops-archive';
 
   }
 }

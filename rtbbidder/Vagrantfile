@@ -7,8 +7,8 @@ Vagrant.require_version ">= 1.6.5"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Using Puppet Labs official vagrant boxes, from: https://vagrantcloud.com/puppetlabs
-  config.vm.box = "puppetlabs/centos-6.6-32-puppet"
-  config.vm.hostname = "pd9-rtbs01-bid02.sea1.audsci.net"
+  config.vm.box = "puppetlabs/centos-6.6-64-puppet"
+  config.vm.hostname = "pd3-rtbs02-bid02.ewr1.audsci.net"
 
   config.vm.provision :shell, :path => "./.vagrant_puppet/init.sh"
 

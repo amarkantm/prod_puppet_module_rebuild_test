@@ -39,40 +39,40 @@ class f5_ltm::repo {
 
    file {
 
-        "/etc/yum.repos.d":
+        '/etc/yum.repos.d':
             ensure   => directory,
             owner    => 'root',
             group    => 'root',
-            mode     => '644',
+            mode     => '0644',
             recurse => true,
-            source   => "puppet:///modules/f5_ltm/repo";
+            source   => 'puppet:///modules/f5_ltm/repo';
  }
 }
 
 class f5_ltm::install {
 
     package {
-        "perl-IO-Socket-SSL":
+        'perl-IO-Socket-SSL':
             ensure   => present,
     }
 
     package {
-        "perl-libwww-perl":
+        'perl-libwww-perl':
             ensure   => present,
     }
 
     package {
-        "perl-Crypt-SSLeay":
+        'perl-Crypt-SSLeay':
             ensure   => present,
     }
 
     package {
-        "perl-XML-Parser":
+        'perl-XML-Parser':
             ensure   => present,
     }
 
     package {
-        "perl-SOAP-Lite":
+        'perl-SOAP-Lite':
             ensure   => present,
     }
 

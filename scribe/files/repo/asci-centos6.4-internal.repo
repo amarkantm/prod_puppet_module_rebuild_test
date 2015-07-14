@@ -1,7 +1,0 @@
-[asci-centos6.4-internal]
-name=asci-centos6.4-internal
-baseurl=http://amar_normal_host:8082/yum/centos6.4-internal/
-enabled=1
-gpgcheck=0
-priority=99
-

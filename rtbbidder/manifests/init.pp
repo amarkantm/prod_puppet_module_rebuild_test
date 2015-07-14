@@ -41,12 +41,35 @@ class rtbbidder {
 #	require => Class["jdk"]
 #}
 
-include jdk
-include	tomcat 
+#include scribe,
+#	jdk,
+#	tomcat, 
 #f5_ltm,
-Class["jdk"] -> Class["tomcat"]
-#	scribe,
-#        ipprops,
-#        bidder
-
+  class{'repo': } ->
+  class{'jdk::install': } ->
+  class{'jdk::config': } ->
+  class{'tomcat::users': } ->
+  class{'tomcat::install': } ->
+  class{'tomcat::config': } ->
+  class{'bidder::config': } ->
+  class{'bidder::run': } ->
+  class{'scribe::users': } ->
+  class{'scribe::install': } ->
+  class{'scribe::config': } ->
+  class{'scribe::run': } ->
+#class{'ipprops': } ->
+#class{"tomcat":} -> 
+  Class[$name]
+#	ipprops,
+#	bidder
 }
+#class rtbbidder {
+
+#  class{'repo': } ->
+#  class{'jdk': } ->
+#  class{'tomcat': } ->
+#  class{'bidder': } ->
+#  class{'scribe': } ->
+#  Class[$name]
+
+#}

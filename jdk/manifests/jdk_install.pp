@@ -35,18 +35,18 @@
 #
 # Copyright (C) 2015 Amar Kant
 #
-class jdk_install($package='jdk') {
+  class jdk_install($package='jdk') {
 
 ## install ##
     package {
-        "${package}":
+        $package:
             ensure   => installed,
             provider => 'rpm',
-            source   => "/tmp/${package}", 
-	    require  => File["/tmp/${package}"];
+            source   => "/tmp/${package}",
+      require  => File["/tmp/${package}"];
     }
 
-   file { 
+  file {
      "/tmp/${package}":
        source => "puppet:///modules/jdk/${package}";
 }
@@ -59,47 +59,47 @@ class jdk_install($package='jdk') {
 
     file {
 
-        "/var/lib/java":
+        '/var/lib/java':
             ensure => directory,
-            mode   => 755;
+            mode   => '0755';
 
-        "/etc/bashrc.d/":
+        '/etc/bashrc.d/':
             ensure => directory,
-            mode   => 755;
+            mode   => '0755';
 
-        "/var/lib/java/dumps":
+        '/var/lib/java/dumps':
             ensure => directory,
-            mode   => 1777;
+            mode   => '1777';
 
-        "/usr/bin/java":
+        '/usr/bin/java':
             ensure  => link,
-            target  => "/usr/java/default/bin/java",
-            require => Package["${package}"];
+            target  => '/usr/java/default/bin/java',
+            require => Package[$package];
 
-        "/usr/bin/jar":
+        '/usr/bin/jar':
             ensure  => link,
-            target  => "/usr/java/default/bin/jar",
-            require => Package["${package}"];
+            target  => '/usr/java/default/bin/jar',
+            require => Package[$package];
 
-        "/usr/bin/javac":
+        '/usr/bin/javac':
             ensure  => link,
-            target  => "/usr/java/default/bin/javac",
-            require => Package["${package}"];
+            target  => '/usr/java/default/bin/javac',
+            require => Package[$package];
 
-        "/usr/bin/jhat":
+        '/usr/bin/jhat':
             ensure  => link,
-            target  => "/usr/java/default/bin/jhat",
-            require => Package["${package}"];
+            target  => '/usr/java/default/bin/jhat',
+            require => Package[$package];
 
-        "/usr/bin/jmap":
+        '/usr/bin/jmap':
             ensure  => link,
-            target  => "/usr/java/default/bin/jmap",
-            require => Package["${package}"];
+            target  => '/usr/java/default/bin/jmap',
+            require => Package[$package];
 
-        "/usr/bin/jstat":
+        '/usr/bin/jstat':
             ensure  => link,
-            target  => "/usr/java/default/bin/jstat",
-            require => Package["${package}"];
+            target  => '/usr/java/default/bin/jstat',
+            require => Package[$package];
 
  }
 }
