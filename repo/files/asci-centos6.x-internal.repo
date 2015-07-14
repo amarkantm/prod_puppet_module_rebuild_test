@@ -1,0 +1,7 @@
+[asci-centos6.x-internal]
+name=asci-centos6.x-internal
+baseurl=http://172.21.17.75:8081/repos/production/rpm/asci6/
+enabled=1
+gpgcheck=0
+priority=90
+

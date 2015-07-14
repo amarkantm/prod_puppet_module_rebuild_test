@@ -1,0 +1,6 @@
+[cobbler-centos6.4-x86_64]
+baseurl=http://172.21.17.75:8083/cobbler/ks_mirror/centos6.4-x86_64/
+enabled=1
+gpgcheck=0
+priority=98
+

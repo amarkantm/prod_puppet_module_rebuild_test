@@ -1,0 +1,6 @@
+[asci-centos6.4]
+baseurl=http://172.21.17.75:8083/cobbler/repo_mirror/asci-centos6.4/
+enabled=1
+gpgcheck=0
+priority=98
+

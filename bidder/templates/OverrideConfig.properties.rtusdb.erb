@@ -1,0 +1,49 @@
+# Added by "rtb/OverrideConfig.properties.rtusdb.erb"
+<%
+    # find our pod/silo and set a few vars
+    @hostname =~ /^((dc1)?pd[0-9]{0,2})-(rtbs[0-9]{2}).*$/
+    server_pod=$1
+    server_group=$3
+    rtvoldemort_urls=""
+
+    # Gen config for "Americas" RTB bidders
+    if @domain == "sea1.audsci.net"
+#        rtvold_count=10
+#        for rtvold_num in 1..rtvold_count
+            # we put the first rtusdb vold node on silo 41 so add an offset of 40
+#            silo_num = rtvold_num+40
+            rtvoldemort_urls="tcp://pd0-rtbs36-rtusdb06.sea1.audsci.net:6666,tcp://pd0-rtbs37-rtusdb07.sea1.audsci.net:6666,tcp://pd0-rtbs38-rtusdb08.sea1.audsci.net:6666,tcp://pd0-rtbs39-rtusdb09.sea1.audsci.net:6666,tcp://pd0-rtbs40-rtusdb10.sea1.audsci.net:6666,tcp://pd0-rtbs41-rtusdb01.sea1.audsci.net:6666,tcp://pd0-rtbs42-rtusdb02.sea1.audsci.net:6666,tcp://pd0-rtbs43-rtusdb03.sea1.audsci.net:6666,tcp://pd0-rtbs44-rtusdb04.sea1.audsci.net:6666,tcp://pd0-rtbs45-rtusdb05.sea1.audsci.net:6666,"
+#        end
+
+    elsif @domain == "hkg2.audsci.net" or @domain == "fra1.audsci.net"
+        rtvold_count=5
+        for rtvold_num in 1..rtvold_count
+            # we put the first rtusdb vold node on silo 41 so add an offset of 40
+            silo_num = rtvold_num+2
+            rtvoldemort_urls+="tcp://#{server_pod}-rtbs%02d-rtusdb%02d.#{@domain}:6666," % [silo_num,rtvold_num]
+        end
+        
+    # Gen config for "Europe" or "Asia-Pacific RTB bidders
+    elsif @domain == "dub1.audsci.net"
+        rtvold_count=3
+        for rtvold_num in 1..rtvold_count
+            # we put the first rtusdb vold node on silo 3 so add an offset of 2
+            rtvoldemort_urls+="tcp://#{server_pod}-voldemort%02d.#{@domain}:6666," % rtvold_num
+        end
+
+    # No soup for you!
+    else
+        rtvold_count=0
+    end
+
+    #remove trailing comma
+    rtvoldemort_urls=rtvoldemort_urls[0..-2]
+-%>
+############################################
+# RealtimeUser Store DB (Voldemort) Config #
+############################################
+<%
+-%>
+apollo.realtimeUserStore.voldemort.urls=<%= rtvoldemort_urls %>
+# End of "rtb/OverrideConfig.properties.rtusdb.erb"
+

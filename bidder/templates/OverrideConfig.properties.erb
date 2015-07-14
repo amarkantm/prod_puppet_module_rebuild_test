@@ -1,0 +1,322 @@
+# Added by "rtbbid/OverrideConfig.properties.erb"
+<%
+    
+    # Set some vars based on hostname
+    @hostname =~ /^pd([0-9]{0,2})-rtbs([0-9]{2})-((no)?bid)[0-9]{2}$/
+    pod_num = $1.to_i
+    silo_num = $2.to_i
+    bidder_type = $3
+    # Set default bidding region (Americas)
+    bidding_region = "1"  
+    # Disable ULS by default
+    use_uls = "false"
+    # Disable AdGroupLimit by default
+    enable_adGroupLimit = "true"
+    # Set Global userRequestInParallel
+    userRequest = "true"
+
+    impression_endpoint="imp.revsci.net"
+    click_endpoint="cl.revsci.net"
+    conversion_endpoint="co.revsci.net"
+    adrequest_endpoint="rq-direct.revsci.net"
+    prequal_endpoint="pq-direct.revsci.net"
+    activation_endpoint="ac.revsci.net"
+    rtbads_hostname = "NOTWORKING-adserver.revsci.net"
+
+    # Determine if we should bid
+    if bidder_type == "bid"
+        bidder_enable = "true"
+    else
+        bidder_enable = "false"
+    end
+
+    # Set fcapdb_hostname per pod based on silo_num even/odd
+    case pod_num
+    ## PD0
+    when 0
+        if silo_num % 2 == 0
+            fcapdb = "pd0-rtbfcapdb03"
+        else
+            fcapdb = "pd0-rtbfcapdb04"
+        end
+        fcapdb_hostname = fcapdb + "." + @domain
+        use_uls = "true"
+        use_broker_uls = "true"
+        uls_hostname = "pd0-rtbs30-uls01.sea1.audsci.net,pd0-rtbs31-uls01.sea1.audsci.net,pd0-rtbs32-uls01.sea1.audsci.net,pd0-rtbs33-uls01.sea1.audsci.net"
+        userRequest = "false"
+        rtbads_hostname = "pd0-adserver.revsci.net"
+    ## PD6
+    when 6
+        bidding_region = "2"
+        if silo_num % 2 == 0
+            fcapdb = "pd6-rtbfcapdb02"
+        else
+            fcapdb = "pd6-rtbfcapdb01"
+        end
+        fcapdb_hostname = fcapdb + "." + @domain
+        use_uls = "true"
+        use_broker_uls = "true"
+        uls_hostname = "pd6-rtbs02-uls01.fra1.audsci.net,pd6-rtbs08-uls01.fra1.audsci.net,pd6-rtbs14-uls01.fra1.audsci.net,pd6-rtbs16-uls01.fra1.audsci.net"
+        rtbads_hostname = "pd6-adserver.revsci.net"
+        userRequest = "false"
+    ## PD8
+    when 8
+        bidding_region = "2"
+        if silo_num % 2 == 0
+            fcapdb = "pd8-rtbfcapdb02"
+        else
+            fcapdb = "pd8-rtbfcapdb01"
+        end
+        fcapdb_hostname = fcapdb + "." + @domain
+        rtbads_hostname = "pd6-adserver.revsci.net"
+        uls_hostname = "pd8-rtbs01-uls01.dub1.audsci.net"
+    ## PD2
+    when 2
+        bidding_region = "3"
+        if silo_num % 2 == 0
+            fcapdb = "pd2-rtbfcapdb01"
+        else
+            fcapdb = "pd2-rtbfcapdb01"
+        end
+        fcapdb_hostname = fcapdb + "." + @domain
+        rtbads_hostname = "pd2-adserver.revsci.net"
+        use_uls = "true"
+        use_broker_uls = "true"
+        uls_hostname = "pd2-rtbs02-uls01.hkg2.audsci.net,pd2-rtbs08-uls01.hkg2.audsci.net,pd2-rtbs12-uls01.hkg2.audsci.net,pd2-rtbs18-uls01.hkg2.audsci.net"
+        userRequest = "false"
+    end
+
+    # For non-US pods set the external Ads URL props
+-%>
+
+################################
+# Ads server external URL data #
+################################
+apollo.adserver.host=<%= rtbads_hostname %>
+apollo.adserver.contextPath=/rtbads
+apollo.adserver.port=80
+
+##################################
+# Percona handlerSocket settings #
+##################################
+apollo.freqcap.db.handlersocket.hostname=<%= fcapdb_hostname %>
+apollo.freqcap.db.handlersocket.port=9998
+apollo.freqcap.db.handlersocket.poolSize=20
+apollo.freqcap.db.handlersocket.database=freqcapdb
+
+#########################
+# Percona jdbc settings #
+#########################
+apollo.freqcap.db.driver.url=jdbc:mysql://<%= fcapdb_hostname %>/freqcapdb
+<%
+    @hostname =~ /^pd([0-9]{0,2})-rtbs([0-9]{2})-((no)?bid)[0-9]{2}$/
+    pod_num = $1.to_i
+    if pod_num == 0 or pod_num == 2
+-%>
+apollo.freqcap.db.driver.classname=com.mysql.jdbc.Driver
+apollo.freqcap.db.driver.password=ZmU4MzY
+apollo.freqcap.db.driver.username=bidder
+<% end %>
+
+################
+# bid or nobid #
+################
+apollo.bidder.enable=<%= bidder_enable %>
+apollo.netacuity.enable=<%= bidder_enable %>
+apollo.zookeeper.enable=<%= bidder_enable %>
+
+#################
+# Bidder Config #
+#################
+# region setting
+apollo.bidder.biddingRegion=<%= bidding_region %>
+# timeout settings
+apollo.bidder.pubmatic.timeLimitMillis=35
+# bidder sampling settings
+#apollo.bidder.reporter.sampleProbability=.10
+#Changing below property as per PROD-13647
+apollo.bidder.reporter.sampleProbability=.001
+# bidder provider require user settings
+#telemetry property
+apollo.telemetry.trackPublishers=false
+apollo.telemetry.trackProviders=true
+
+# Disable bidder userRequest parallel lookup
+apollo.bidder.userRequestInParallel=<%= userRequest %>
+
+<%
+    # set provider requireUser=false for US pods
+    if pod_num == 0 or pod_num == 2 or pod_num == 4 or pod_num == 6
+-%>
+apollo.bidder.google.requireUser=true
+apollo.bidder.appnexus.requireUser=true
+apollo.bidder.rubicon.requireUser=true
+<%
+    # set provider requireUser=true for NON US pods
+    elsif pod_num == 8
+-%>
+apollo.bidder.google.requireUser=true
+apollo.bidder.appnexus.requireUser=true
+apollo.bidder.rubicon.requireUser=true
+<%
+    end
+-%>
+
+#####################
+# AppNexus Settings #
+#####################
+#API Support
+apollo.provider.appnexus.defaultMemberId=1080
+apollo.provider.appnexus.microsoftMemberId=280
+apollo.provider.appnexus.api.enable=true
+apollo.provider.appnexus.api.host=api.adnxs.com
+apollo.provider.appnexus.api.port=80
+apollo.provider.appnexus.api.contextPath=
+apollo.provider.appnexus.api.username=audience_science_bidder_user
+apollo.provider.appnexus.api.password=KuMJdZVN
+
+###################
+# Admeld Settings #
+###################
+apollo.bidder.admeld.requireUser=true
+apollo.provider.admeld.buyerId=asci1
+
+#######################
+# UserLocking Service #
+#######################
+
+apollo.bidder.userLock.enable=<%= use_uls %>
+apollo.bidder.userLock.broker.enable=<%= use_broker_uls %>
+apollo.bidder.userLock.broker.servers=<%= uls_hostname %>
+apollo.bidder.userLock.broker.maxPartitions=16
+apollo.bidder.userLock.maxConnectionsPerHost=10
+apollo.bidder.userLock.maxTotalConnections=40
+
+############
+# Ad Group #
+############
+
+apollo.bidder.adGroupLimit.enable=<%= enable_adGroupLimit %>
+
+####################
+# EndPoint Configs #
+####################
+
+apollo.adserver.impressionEndpoint.host=pd<%= pod_num %>-<%= impression_endpoint %>
+apollo.adserver.clickEndpoint.host=pd<%= pod_num %>-<%= click_endpoint %>
+apollo.adserver.conversionEndpoint.host=pd<%= pod_num %>-<%= conversion_endpoint %>
+apollo.soyuz.adRequestEndpoint.host=<%= adrequest_endpoint %>
+apollo.soyuz.prequalEndpoint.host=<%= prequal_endpoint %>
+apollo.soyuz.activationEndpoint.host=<%= activation_endpoint %>
+
+####################
+# Netacuity files  #
+####################
+
+apollo.netacuity.countryCodesFile=file:/var/rsi/rtb/codes/country_codes.tab
+apollo.netacuity.regionCodesFile=file:/var/rsi/rtb/codes/region_codes.tab
+apollo.netacuity.cityCodesFile=file:/var/rsi/rtb/codes/city_codes.tab
+
+####################
+# PublisherSettings #
+####################
+
+apollo.voldemort.publisherSettings.timeoutMillis=40
+
+################################################################
+# via v83.0                                                    #
+#Other properties have been edited as they were already present#
+################################################################
+	
+apollo.bidder.adaptv.requireUser=true
+apollo.bidder.brightroll.requireUser=true
+apollo.bidder.rightmedia.requireUser=true
+apollo.bidder.spotxchange.requireUser=true
+
+######################
+#via v85.0############
+#####################
+<%
+if @domain == "sea1.audsci.net"
+%>
+apollo.bidder.dapi.userdata.enable=true
+<%
+    end
+%>
+
+####################################
+##Changes as per jira PROD-11641####
+####################################
+
+<%
+if @domain == "sea1.audsci.net"
+%>
+apollo.bidder.integralService.servers=pd0-varnish-vip.sea1.audsci.net:6081
+
+<%
+elsif @domain == "hkg2.audsci.net"
+%>
+apollo.bidder.integralService.servers=pd2-varnish-vip.hkg2.audsci.net:6081
+
+<%
+elsif @domain == "fra1.audsci.net"
+%>
+apollo.bidder.integralService.servers=pd6-varnish-vip.fra1.audsci.net:6081
+
+<%
+    end
+%>
+
+##################################
+##Adding changes as per jira:11737#
+###################################
+
+<%
+if @domain == "sea1.audsci.net"
+%>
+apollo.bidder.dapi.userdata.port=80
+apollo.bidder.dapi.userdata.host=pd0-bgas-internal-vip.sea1.audsci.net
+
+<%
+elsif @domain == "ewr1.audsci.net"
+%>
+apollo.bidder.dapi.userdata.port=80
+apollo.bidder.dapi.userdata.enable=true
+apollo.bidder.dapi.userdata.host=pd3-bgas-internal-vip.ewr1.audsci.net
+
+
+<%
+    end
+%>
+
+####################################
+#Cassandra User Lookup#
+###################################
+<%
+if @domain == "sea1.audsci.net"
+%>
+
+#apollo.readonlyUserStore.enable=false
+#apollo.realtimeUserStore.enable=false
+#apollo.userStore.enable=true
+#apollo.userStore.cassandra.servers=10.6.1.101,10.6.1.102,10.6.1.103,10.6.1.104,10.6.1.105,10.6.1.106,10.6.1.44,10.6.1.45,10.6.1.47
+#apollo.userStore.cassandra.dataCenterName=DC1
+
+<%
+    end
+%>
+##########################################
+##Adding changes as per prod-13557#########
+###########################################
+#apollo.bidder.zookeeper.lifetimeMillis=1800000
+
+##Adding changes as per PROD-13558#########
+#apollo.bidder.zookeeper.lifetimeMillis=3600000
+
+##Adding changes as per PROD-13647#########
+apollo.bidder.zookeeper.lifetimeMillis=1200000
+
+##Adding changes as per PROD-15084#########
+apollo.bidder.direct.timeLimitMillis=100
+
+# End of "rtbbid/OverrideConfig.properties.erb"

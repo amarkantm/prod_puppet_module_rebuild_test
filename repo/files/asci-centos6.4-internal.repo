@@ -1,0 +1,7 @@
+[asci-centos6.4-internal]
+name=asci-centos6.4-internal
+baseurl=http://172.21.17.75:8082/yum/centos6.4-internal/
+enabled=1
+gpgcheck=0
+priority=99
+
